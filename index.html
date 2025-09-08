@@ -2,6 +2,19 @@
 <html lang="en">
   <!-- Head -->
   <head>
+    <script>
+  // Disable transitions during first paint to avoid "fade" flash
+  document.documentElement.classList.add('preload');
+
+  (function () {
+    var saved = localStorage.getItem('theme');
+    if (!saved) {
+      saved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', saved);
+  })();
+</script>
+
         <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXJ2NQQ00T"></script>
     <script>
@@ -26,15 +39,20 @@
   <!-- Body -->
   <body>
     <!-- Top Nav -->
-    <div class="topnav">
-      <a id="current" class="topnav_link" href="https://adampugsley.ca/"
-        >Home</a
-      >
-      <a class="topnav_link" href="resume.html">Resume</a>
-      <a class="topnav_link" href="work.html">Work</a>
-    </div>
+<div class="topnav">
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="resume.html">Resume</a>
+    <a href="work.html">Work</a>
+  </div>
 
-    <hr />
+  <div class="theme-toggle-container">
+    <label class="theme-toggle" aria-label="Toggle dark mode">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
 
     <div class="grid-2">
       <!-- LEFT COLUMN -->
@@ -51,12 +69,16 @@
         <p>Toronto, Ontario, Canada.</p>
 
         <!-- Icons -->
-        <a title="LinkedIn" href="https://www.linkedin.com/in/adampugs/"
-          ><i class="fab fa-linkedin"></i
-        ></a>
-        <a title="E-mail" href="mailto: ajrpugs@gmail.com"><i class="far fa-envelope"></i></a>
-        <a title="Resume" href="downloads/Adam Pugsley Resume.pdf" download
-          ><i class="far fa-file"></i></a> 
+        <a title="LinkedIn" href="https://www.linkedin.com/in/adampugs/" class="icon-link">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a title="E-mail" href="mailto:ajrpugs@gmail.com" class="icon-link">
+          <i class="far fa-envelope"></i>
+        </a>
+        <a title="Resume" href="downloads/Adam Pugsley Resume.pdf" download class="icon-link">
+          <i class="far fa-file"></i>
+        </a>
+
       </div>
 
       <!-- RIGHT COLUMN -->
@@ -86,5 +108,12 @@
         </p>
       </div>
     </div>
+    <script>
+  window.addEventListener('DOMContentLoaded', function () {
+    document.documentElement.classList.remove('preload');
+  });
+</script>
+<script src="theme.js"></script>
+
   </body>
 </html>
