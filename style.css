@@ -169,7 +169,8 @@ span {
 
 .topnav {
   text-align: center;
-  height: auto;
+  font-size: 1.5rem;
+  height: 10vh;
   padding-top: 5vh;
   padding-bottom: 5vh;
   position: fixed; /* Set the navbar to fixed position */
@@ -225,7 +226,7 @@ br {
 }
 
 .section-1 {
-  padding-top: 25vh;
+  padding-top: 15vh;
   text-align: center;
   width: 50%;
 
@@ -279,7 +280,7 @@ br {
 
 /* section 2 */
 .section-2 {
-  padding-top: 25vh;
+  padding-top: 15vh;
   width: 80%;
   padding-left: 50px;
   padding-bottom: 50px;
@@ -407,3 +408,126 @@ main.portfolio {
     display: none;
   }
 }
+
+/* Light (default) */
+:root{
+  --bg:#ffffff;
+  --text:#111111;
+  --muted:#666666;
+  --link:#7a7c80;
+  --card:#f6f8fa;
+
+  /* Nav + borders */
+  --nav-bg:#ffffff;
+  --nav-text:#111111;
+  --nav-link:#7a7c80;
+  --nav-link-hover:#4490ee;
+}
+
+/* Dark */
+:root[data-theme="dark"]{
+  --bg:#0b0d10;
+  --text:#e6e6e6;
+  --muted:#a3a3a3;
+  --link:#7a7c80;
+  --card:#161b22;
+
+  --nav-bg:#0b0d10;
+  --nav-text:#e6e6e6;
+  --nav-link:#7a7c80;
+  --nav-link-hover:#e6e6e6;
+}
+
+/* Apply tokens globally */
+html, body { background: var(--bg); color: var(--text); }
+a { color: var(--link); }
+h1,h2,h3,h4,h5,h6 { color: var(--text); }
+.card, .panel, .box { background: var(--card); color: var(--text); }
+
+/* Nav uses theme tokens */
+.topnav, header.site-header, .navbar {
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  border-bottom: 1px solid var(--border);
+}
+.topnav a, header.site-header a, .navbar a { color: var(--nav-link); text-decoration: none; }
+.topnav a:hover, header.site-header a:hover, .navbar a:hover { color: var(--nav-link-hover); }
+
+/* Smooth transitions (disabled at first paint below) */
+* { transition: background-color .2s ease, color .2s ease, border-color .2s ease; }
+
+/* Disable transitions during first paint to prevent flashing */
+html.preload * { transition: none !important; }
+
+/* Center the links, keep toggle on the right */
+.topnav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;     /* centers the .nav-links block */
+  padding: .5rem 1rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+  margin: 0 auto;              /* keeps links centered even with right toggle */
+}
+
+.theme-toggle-container {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Toggle switch */
+.theme-toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  cursor: pointer;
+}
+.theme-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Track */
+.theme-toggle .slider {
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 30px;
+  transition: background-color .3s ease;
+}
+
+/* Knob */
+.theme-toggle .slider::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .3s ease;
+}
+
+/* Checked state = dark */
+.theme-toggle input:checked + .slider { background: #4a90e2; }
+.theme-toggle input:checked + .slider::before { transform: translateX(22px); }
+
+/* Default (light mode) hover */
+.icon-link:hover {
+  color: #000;  /* or another accent */
+}
+
+/* Dark mode hover = white */
+:root[data-theme="dark"] .icon-link:hover {
+  color: #fff;
+}
+
