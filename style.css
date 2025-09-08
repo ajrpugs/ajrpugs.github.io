@@ -434,8 +434,8 @@ main.portfolio {
 
   --nav-bg:#0b0d10;
   --nav-text:#e6e6e6;
-  --nav-link:#7a7c80;
-  --nav-link-hover:#e6e6e6;
+  --nav-link:#e6e6e6;
+  --nav-link-hover:#4490ee;
 }
 
 /* Apply tokens globally */
